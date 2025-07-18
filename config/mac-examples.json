@@ -1,0 +1,35 @@
+{
+  "_comment": "WORKING CONFIGURATION - Use absolute paths only!",
+  "_instructions": "Replace /opt/homebrew/bin/node with your Node.js path (run 'which node')",
+  "_instructions2": "Replace /Users/yourname/path/to/comfyui-model-tools-mac with your actual project path (run 'pwd')",
+  
+  "mcpServers": {
+    "comfyui-model-tools": {
+      "command": "/opt/homebrew/bin/node",
+      "args": ["/Users/yourname/path/to/comfyui-model-tools-mac/build/index.js"],
+      "description": "ComfyUI Model Management Tools for Mac - WORKING CONFIG with absolute paths",
+      "tools": [
+        "download_huggingface_model",
+        "list_installed_models"
+      ]
+    },
+    
+    "comfyui-model-tools-intel-mac": {
+      "command": "/usr/local/bin/node",
+      "args": ["/Users/yourname/path/to/comfyui-model-tools-mac/build/index.js"],
+      "description": "ComfyUI Model Management Tools for Intel Mac - WORKING CONFIG with absolute paths",
+      "tools": [
+        "download_huggingface_model",
+        "list_installed_models"
+      ]
+    },
+    
+    "_BROKEN_EXAMPLE_DO_NOT_USE": {
+      "_comment": "This configuration DOES NOT WORK - causes 'Cannot find module' errors",
+      "command": "node",
+      "args": ["build/index.js"],
+      "cwd": "/path/to/comfyui-model-tools-mac",
+      "description": "BROKEN - Do not use relative paths with cwd"
+    }
+  }
+}

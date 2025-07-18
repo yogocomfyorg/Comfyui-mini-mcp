@@ -1,0 +1,497 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2025-07-14T14:49:32.850Z",
+  "state": {
+    "sessionId": "session_1752488393577_78vms1jvr",
+    "startTime": "2025-07-14T10:19:53.577Z",
+    "lastActivity": "2025-07-14T14:49:30.848Z",
+    "connectionState": {
+      "isConnected": true,
+      "connectionId": "conn_1752488393577_hyfqpt8in",
+      "lastConnected": "2025-07-14T10:19:53.597Z",
+      "lastDisconnected": null,
+      "reconnectAttempts": 0
+    },
+    "processState": {
+      "managedProcesses": {},
+      "lastCleanup": null,
+      "activeProcessCount": 0
+    },
+    "healthState": {
+      "lastHealthCheck": "2025-07-14T14:49:30.608Z",
+      "healthScore": 95,
+      "overallHealth": "healthy",
+      "consecutiveFailures": 0
+    },
+    "toolState": {
+      "lastToolCall": null,
+      "toolCallCount": 0,
+      "failedToolCalls": 0,
+      "activeOperations": []
+    },
+    "errorState": {
+      "lastError": null,
+      "errorCount": 0,
+      "criticalErrors": 0,
+      "recoveryAttempts": 0
+    },
+    "configuration": {
+      "comfyuiUrl": "http://127.0.0.1:8188",
+      "sandboxPath": null,
+      "autoRestart": true,
+      "healthMonitoring": true
+    }
+  },
+  "snapshots": [
+    {
+      "timestamp": "2025-07-14T14:44:53.812Z",
+      "state": {
+        "sessionId": "session_1752488393577_78vms1jvr",
+        "startTime": "2025-07-14T10:19:53.577Z",
+        "lastActivity": "2025-07-14T14:44:50.819Z",
+        "connectionState": {
+          "isConnected": true,
+          "connectionId": "conn_1752488393577_hyfqpt8in",
+          "lastConnected": "2025-07-14T10:19:53.597Z",
+          "lastDisconnected": null,
+          "reconnectAttempts": 0
+        },
+        "processState": {
+          "managedProcesses": {},
+          "lastCleanup": null,
+          "activeProcessCount": 0
+        },
+        "healthState": {
+          "lastHealthCheck": "2025-07-14T14:44:50.574Z",
+          "healthScore": 95,
+          "overallHealth": "healthy",
+          "consecutiveFailures": 0
+        },
+        "toolState": {
+          "lastToolCall": null,
+          "toolCallCount": 0,
+          "failedToolCalls": 0,
+          "activeOperations": []
+        },
+        "errorState": {
+          "lastError": null,
+          "errorCount": 0,
+          "criticalErrors": 0,
+          "recoveryAttempts": 0
+        },
+        "configuration": {
+          "comfyuiUrl": "http://127.0.0.1:8188",
+          "sandboxPath": null,
+          "autoRestart": true,
+          "healthMonitoring": true
+        }
+      },
+      "checksum": "-3d3c1327"
+    },
+    {
+      "timestamp": "2025-07-14T14:45:23.813Z",
+      "state": {
+        "sessionId": "session_1752488393577_78vms1jvr",
+        "startTime": "2025-07-14T10:19:53.577Z",
+        "lastActivity": "2025-07-14T14:45:20.884Z",
+        "connectionState": {
+          "isConnected": true,
+          "connectionId": "conn_1752488393577_hyfqpt8in",
+          "lastConnected": "2025-07-14T10:19:53.597Z",
+          "lastDisconnected": null,
+          "reconnectAttempts": 0
+        },
+        "processState": {
+          "managedProcesses": {},
+          "lastCleanup": null,
+          "activeProcessCount": 0
+        },
+        "healthState": {
+          "lastHealthCheck": "2025-07-14T14:45:20.577Z",
+          "healthScore": 95,
+          "overallHealth": "healthy",
+          "consecutiveFailures": 0
+        },
+        "toolState": {
+          "lastToolCall": null,
+          "toolCallCount": 0,
+          "failedToolCalls": 0,
+          "activeOperations": []
+        },
+        "errorState": {
+          "lastError": null,
+          "errorCount": 0,
+          "criticalErrors": 0,
+          "recoveryAttempts": 0
+        },
+        "configuration": {
+          "comfyuiUrl": "http://127.0.0.1:8188",
+          "sandboxPath": null,
+          "autoRestart": true,
+          "healthMonitoring": true
+        }
+      },
+      "checksum": "-314ff4b6"
+    },
+    {
+      "timestamp": "2025-07-14T14:45:53.812Z",
+      "state": {
+        "sessionId": "session_1752488393577_78vms1jvr",
+        "startTime": "2025-07-14T10:19:53.577Z",
+        "lastActivity": "2025-07-14T14:45:50.849Z",
+        "connectionState": {
+          "isConnected": true,
+          "connectionId": "conn_1752488393577_hyfqpt8in",
+          "lastConnected": "2025-07-14T10:19:53.597Z",
+          "lastDisconnected": null,
+          "reconnectAttempts": 0
+        },
+        "processState": {
+          "managedProcesses": {},
+          "lastCleanup": null,
+          "activeProcessCount": 0
+        },
+        "healthState": {
+          "lastHealthCheck": "2025-07-14T14:45:50.581Z",
+          "healthScore": 95,
+          "overallHealth": "healthy",
+          "consecutiveFailures": 0
+        },
+        "toolState": {
+          "lastToolCall": null,
+          "toolCallCount": 0,
+          "failedToolCalls": 0,
+          "activeOperations": []
+        },
+        "errorState": {
+          "lastError": null,
+          "errorCount": 0,
+          "criticalErrors": 0,
+          "recoveryAttempts": 0
+        },
+        "configuration": {
+          "comfyuiUrl": "http://127.0.0.1:8188",
+          "sandboxPath": null,
+          "autoRestart": true,
+          "healthMonitoring": true
+        }
+      },
+      "checksum": "-55f5a386"
+    },
+    {
+      "timestamp": "2025-07-14T14:46:23.812Z",
+      "state": {
+        "sessionId": "session_1752488393577_78vms1jvr",
+        "startTime": "2025-07-14T10:19:53.577Z",
+        "lastActivity": "2025-07-14T14:46:20.826Z",
+        "connectionState": {
+          "isConnected": true,
+          "connectionId": "conn_1752488393577_hyfqpt8in",
+          "lastConnected": "2025-07-14T10:19:53.597Z",
+          "lastDisconnected": null,
+          "reconnectAttempts": 0
+        },
+        "processState": {
+          "managedProcesses": {},
+          "lastCleanup": null,
+          "activeProcessCount": 0
+        },
+        "healthState": {
+          "lastHealthCheck": "2025-07-14T14:46:20.582Z",
+          "healthScore": 95,
+          "overallHealth": "healthy",
+          "consecutiveFailures": 0
+        },
+        "toolState": {
+          "lastToolCall": null,
+          "toolCallCount": 0,
+          "failedToolCalls": 0,
+          "activeOperations": []
+        },
+        "errorState": {
+          "lastError": null,
+          "errorCount": 0,
+          "criticalErrors": 0,
+          "recoveryAttempts": 0
+        },
+        "configuration": {
+          "comfyuiUrl": "http://127.0.0.1:8188",
+          "sandboxPath": null,
+          "autoRestart": true,
+          "healthMonitoring": true
+        }
+      },
+      "checksum": "189cf918"
+    },
+    {
+      "timestamp": "2025-07-14T14:46:53.812Z",
+      "state": {
+        "sessionId": "session_1752488393577_78vms1jvr",
+        "startTime": "2025-07-14T10:19:53.577Z",
+        "lastActivity": "2025-07-14T14:46:50.843Z",
+        "connectionState": {
+          "isConnected": true,
+          "connectionId": "conn_1752488393577_hyfqpt8in",
+          "lastConnected": "2025-07-14T10:19:53.597Z",
+          "lastDisconnected": null,
+          "reconnectAttempts": 0
+        },
+        "processState": {
+          "managedProcesses": {},
+          "lastCleanup": null,
+          "activeProcessCount": 0
+        },
+        "healthState": {
+          "lastHealthCheck": "2025-07-14T14:46:50.586Z",
+          "healthScore": 95,
+          "overallHealth": "healthy",
+          "consecutiveFailures": 0
+        },
+        "toolState": {
+          "lastToolCall": null,
+          "toolCallCount": 0,
+          "failedToolCalls": 0,
+          "activeOperations": []
+        },
+        "errorState": {
+          "lastError": null,
+          "errorCount": 0,
+          "criticalErrors": 0,
+          "recoveryAttempts": 0
+        },
+        "configuration": {
+          "comfyuiUrl": "http://127.0.0.1:8188",
+          "sandboxPath": null,
+          "autoRestart": true,
+          "healthMonitoring": true
+        }
+      },
+      "checksum": "5437f6f"
+    },
+    {
+      "timestamp": "2025-07-14T14:47:23.814Z",
+      "state": {
+        "sessionId": "session_1752488393577_78vms1jvr",
+        "startTime": "2025-07-14T10:19:53.577Z",
+        "lastActivity": "2025-07-14T14:47:20.883Z",
+        "connectionState": {
+          "isConnected": true,
+          "connectionId": "conn_1752488393577_hyfqpt8in",
+          "lastConnected": "2025-07-14T10:19:53.597Z",
+          "lastDisconnected": null,
+          "reconnectAttempts": 0
+        },
+        "processState": {
+          "managedProcesses": {},
+          "lastCleanup": null,
+          "activeProcessCount": 0
+        },
+        "healthState": {
+          "lastHealthCheck": "2025-07-14T14:47:20.589Z",
+          "healthScore": 95,
+          "overallHealth": "healthy",
+          "consecutiveFailures": 0
+        },
+        "toolState": {
+          "lastToolCall": null,
+          "toolCallCount": 0,
+          "failedToolCalls": 0,
+          "activeOperations": []
+        },
+        "errorState": {
+          "lastError": null,
+          "errorCount": 0,
+          "criticalErrors": 0,
+          "recoveryAttempts": 0
+        },
+        "configuration": {
+          "comfyuiUrl": "http://127.0.0.1:8188",
+          "sandboxPath": null,
+          "autoRestart": true,
+          "healthMonitoring": true
+        }
+      },
+      "checksum": "3a804188"
+    },
+    {
+      "timestamp": "2025-07-14T14:47:53.814Z",
+      "state": {
+        "sessionId": "session_1752488393577_78vms1jvr",
+        "startTime": "2025-07-14T10:19:53.577Z",
+        "lastActivity": "2025-07-14T14:47:50.897Z",
+        "connectionState": {
+          "isConnected": true,
+          "connectionId": "conn_1752488393577_hyfqpt8in",
+          "lastConnected": "2025-07-14T10:19:53.597Z",
+          "lastDisconnected": null,
+          "reconnectAttempts": 0
+        },
+        "processState": {
+          "managedProcesses": {},
+          "lastCleanup": null,
+          "activeProcessCount": 0
+        },
+        "healthState": {
+          "lastHealthCheck": "2025-07-14T14:47:50.593Z",
+          "healthScore": 95,
+          "overallHealth": "healthy",
+          "consecutiveFailures": 0
+        },
+        "toolState": {
+          "lastToolCall": null,
+          "toolCallCount": 0,
+          "failedToolCalls": 0,
+          "activeOperations": []
+        },
+        "errorState": {
+          "lastError": null,
+          "errorCount": 0,
+          "criticalErrors": 0,
+          "recoveryAttempts": 0
+        },
+        "configuration": {
+          "comfyuiUrl": "http://127.0.0.1:8188",
+          "sandboxPath": null,
+          "autoRestart": true,
+          "healthMonitoring": true
+        }
+      },
+      "checksum": "-32728bae"
+    },
+    {
+      "timestamp": "2025-07-14T14:48:23.815Z",
+      "state": {
+        "sessionId": "session_1752488393577_78vms1jvr",
+        "startTime": "2025-07-14T10:19:53.577Z",
+        "lastActivity": "2025-07-14T14:48:20.878Z",
+        "connectionState": {
+          "isConnected": true,
+          "connectionId": "conn_1752488393577_hyfqpt8in",
+          "lastConnected": "2025-07-14T10:19:53.597Z",
+          "lastDisconnected": null,
+          "reconnectAttempts": 0
+        },
+        "processState": {
+          "managedProcesses": {},
+          "lastCleanup": null,
+          "activeProcessCount": 0
+        },
+        "healthState": {
+          "lastHealthCheck": "2025-07-14T14:48:20.598Z",
+          "healthScore": 95,
+          "overallHealth": "healthy",
+          "consecutiveFailures": 0
+        },
+        "toolState": {
+          "lastToolCall": null,
+          "toolCallCount": 0,
+          "failedToolCalls": 0,
+          "activeOperations": []
+        },
+        "errorState": {
+          "lastError": null,
+          "errorCount": 0,
+          "criticalErrors": 0,
+          "recoveryAttempts": 0
+        },
+        "configuration": {
+          "comfyuiUrl": "http://127.0.0.1:8188",
+          "sandboxPath": null,
+          "autoRestart": true,
+          "healthMonitoring": true
+        }
+      },
+      "checksum": "790b1370"
+    },
+    {
+      "timestamp": "2025-07-14T14:48:53.815Z",
+      "state": {
+        "sessionId": "session_1752488393577_78vms1jvr",
+        "startTime": "2025-07-14T10:19:53.577Z",
+        "lastActivity": "2025-07-14T14:48:50.843Z",
+        "connectionState": {
+          "isConnected": true,
+          "connectionId": "conn_1752488393577_hyfqpt8in",
+          "lastConnected": "2025-07-14T10:19:53.597Z",
+          "lastDisconnected": null,
+          "reconnectAttempts": 0
+        },
+        "processState": {
+          "managedProcesses": {},
+          "lastCleanup": null,
+          "activeProcessCount": 0
+        },
+        "healthState": {
+          "lastHealthCheck": "2025-07-14T14:48:50.601Z",
+          "healthScore": 95,
+          "overallHealth": "healthy",
+          "consecutiveFailures": 0
+        },
+        "toolState": {
+          "lastToolCall": null,
+          "toolCallCount": 0,
+          "failedToolCalls": 0,
+          "activeOperations": []
+        },
+        "errorState": {
+          "lastError": null,
+          "errorCount": 0,
+          "criticalErrors": 0,
+          "recoveryAttempts": 0
+        },
+        "configuration": {
+          "comfyuiUrl": "http://127.0.0.1:8188",
+          "sandboxPath": null,
+          "autoRestart": true,
+          "healthMonitoring": true
+        }
+      },
+      "checksum": "-3635dc15"
+    },
+    {
+      "timestamp": "2025-07-14T14:49:23.815Z",
+      "state": {
+        "sessionId": "session_1752488393577_78vms1jvr",
+        "startTime": "2025-07-14T10:19:53.577Z",
+        "lastActivity": "2025-07-14T14:49:20.848Z",
+        "connectionState": {
+          "isConnected": true,
+          "connectionId": "conn_1752488393577_hyfqpt8in",
+          "lastConnected": "2025-07-14T10:19:53.597Z",
+          "lastDisconnected": null,
+          "reconnectAttempts": 0
+        },
+        "processState": {
+          "managedProcesses": {},
+          "lastCleanup": null,
+          "activeProcessCount": 0
+        },
+        "healthState": {
+          "lastHealthCheck": "2025-07-14T14:49:20.608Z",
+          "healthScore": 95,
+          "overallHealth": "healthy",
+          "consecutiveFailures": 0
+        },
+        "toolState": {
+          "lastToolCall": null,
+          "toolCallCount": 0,
+          "failedToolCalls": 0,
+          "activeOperations": []
+        },
+        "errorState": {
+          "lastError": null,
+          "errorCount": 0,
+          "criticalErrors": 0,
+          "recoveryAttempts": 0
+        },
+        "configuration": {
+          "comfyuiUrl": "http://127.0.0.1:8188",
+          "sandboxPath": null,
+          "autoRestart": true,
+          "healthMonitoring": true
+        }
+      },
+      "checksum": "1899e489"
+    }
+  ]
+}

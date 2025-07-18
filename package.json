@@ -1,0 +1,47 @@
+{
+  "name": "comfyui-model-tools-mcp",
+  "version": "1.0.0",
+  "description": "ComfyUI MCP Server - Model Management Tools (download_huggingface_model & list_installed_models)",
+  "type": "module",
+  "main": "build/index.js",
+  "bin": {
+    "comfyui-model-tools": "./build/index.js"
+  },
+  "scripts": {
+    "start": "node build/index.js",
+    "test": "node verify-setup.js",
+    "install": "./install.sh",
+    "verify": "node verify-setup.js"
+  },
+  "keywords": [
+    "comfyui",
+    "mcp",
+    "model-context-protocol",
+    "huggingface",
+    "model-management",
+    "ai"
+  ],
+  "author": "ComfyUI MCP Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.3",
+    "zod": "^3.22.4",
+    "axios": "^1.6.0",
+    "fs-extra": "^11.2.0",
+    "chalk": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "build",
+    "README-MAC.md",
+    "START-HERE-MAC.md",
+    "MAC-DEPLOYMENT-GUIDE.md",
+    "config",
+    "state",
+    "install.sh",
+    "start-server.sh",
+    "verify-setup.js"
+  ]
+}
