@@ -6,26 +6,93 @@ import path from "path";
 import { createWriteStream } from "fs";
 import { pipeline } from "stream/promises";
 import chalk from "chalk";
+import { HttpsProxyAgent } from "https-proxy-agent";
+import { HttpProxyAgent } from "http-proxy-agent";
 import { detectComfyUIInstallation, getModelTypeDirectory, ensureModelDirectory } from "../utils/comfyuiDetection.js";
-// Helper functions
+
+// Setup proxy configuration for fetch
+const createFetchConfig = () => {
+    const httpsProxy = process.env.HTTPS_PROXY || process.env.https_proxy;
+    
+    const config = {
+        headers: {
+            'User-Agent': 'curl/8.7.1',
+            'Accept': '*/*'
+        }
+    };
+    
+    if (httpsProxy) {
+        console.error(`🔗 Using HTTPS proxy: ${httpsProxy}`);
+        config.agent = new HttpsProxyAgent(httpsProxy);
+    }
+    
+    return config;
+};
+
+// Setup proxy configuration for axios (fallback)
+const createAxiosConfig = () => {
+    const config = {
+        timeout: 300000, // 5 minutes
+        maxRedirects: 5, // Keep it simple like curl
+        headers: {
+            'User-Agent': 'curl/8.7.1', // Use same User-Agent as curl
+            'Accept': '*/*'
+        }
+    };
+    
+    // Configure proxy if available
+    const httpsProxy = process.env.HTTPS_PROXY || process.env.https_proxy;
+    
+    if (httpsProxy) {
+        console.error(`🔗 Using HTTPS proxy: ${httpsProxy}`);
+        config.httpsAgent = new HttpsProxyAgent(httpsProxy);
+    }
+    
+    return config;
+};
+// Helper functions - Completely rewritten based on working test
 async function downloadFile(url, outputPath, onProgress) {
     let retries = 3;
     let lastError = null;
     while (retries > 0) {
         try {
             console.error(chalk.blue(`🔗 Attempting download from: ${url}`));
-            const response = await axios({
-                method: 'GET',
-                url: url,
-                responseType: 'stream',
-                timeout: 300000, // 5 minutes timeout
-                maxRedirects: 10, // Handle HuggingFace redirects
+            
+            const httpsProxy = process.env.HTTPS_PROXY || process.env.https_proxy;
+            console.error(chalk.blue(`🔗 Using HTTPS proxy: ${httpsProxy}`));
+            
+            // Step 1: Get redirect (just like test script)
+            let finalUrl = url;
+            try {
+                const agent = new HttpsProxyAgent(httpsProxy);
+                await axios.get(url, {
+                    httpsAgent: agent,
+                    timeout: 30000,
+                    headers: {
+                        'User-Agent': 'curl/8.7.1',
+                        'Accept': '*/*'
+                    },
+                    maxRedirects: 0  // Don't follow redirects automatically
+                });
+            } catch (error) {
+                if (error.response?.status === 302) {
+                    finalUrl = error.response.headers.location;
+                    console.error(chalk.blue(`📍 Following redirect to CDN: ${finalUrl.substring(0, 100)}...`));
+                } else {
+                    throw error;
+                }
+            }
+            
+            // Step 2: Download from final URL
+            const agent = new HttpsProxyAgent(httpsProxy);
+            const response = await axios.get(finalUrl, {
+                httpsAgent: agent,
+                timeout: 300000,
                 headers: {
-                    'User-Agent': 'ComfyUI-MCP-Server/1.0.0',
-                    'Accept': '*/*',
-                    'Accept-Encoding': 'gzip, deflate, br'
+                    'User-Agent': 'curl/8.7.1',
+                    'Accept': '*/*'
                 },
-                validateStatus: (status) => status >= 200 && status < 400
+                responseType: 'stream'
             });
             const totalSize = parseInt(response.headers['content-length'] || '0', 10);
             let downloadedSize = 0;
@@ -38,6 +105,7 @@ async function downloadFile(url, outputPath, onProgress) {
             writer.on('error', (error) => {
                 throw new Error(`Write stream error: ${error.message}`);
             });
+            
             response.data.on('data', (chunk) => {
                 downloadedSize += chunk.length;
                 if (onProgress && totalSize > 0) {
@@ -53,9 +121,11 @@ async function downloadFile(url, outputPath, onProgress) {
                     });
                 }
             });
+            
             response.data.on('error', (error) => {
                 throw new Error(`Download stream error: ${error.message}`);
             });
+            
             await pipeline(response.data, writer);
             // Verify file was written correctly
             const stats = await fs.stat(outputPath);
@@ -72,7 +142,18 @@ async function downloadFile(url, outputPath, onProgress) {
         catch (error) {
             lastError = error instanceof Error ? error : new Error(String(error));
             retries--;
-            console.error(chalk.red(`❌ Download attempt failed: ${lastError.message}`));
+            
+            // Enhanced error logging
+            if (error.response) {
+                console.error(chalk.red(`❌ Download attempt failed: ${error.response.status} ${error.response.statusText}`));
+                console.error(chalk.red(`   Response headers: ${JSON.stringify(error.response.headers, null, 2)}`));
+                if (error.response.data && typeof error.response.data === 'string') {
+                    console.error(chalk.red(`   Response body: ${error.response.data.substring(0, 500)}`));
+                }
+            } else {
+                console.error(chalk.red(`❌ Download attempt failed: ${lastError.message}`));
+            }
+            
             if (retries > 0) {
                 console.error(chalk.yellow(`🔄 Retrying... (${retries} attempts remaining)`));
                 // Clean up partial file
@@ -101,14 +182,82 @@ function formatBytes(bytes) {
 }
 async function getHuggingFaceModelInfo(modelId, filename) {
     const apiUrl = `https://huggingface.co/api/models/${modelId}`;
-    const response = await axios.get(apiUrl);
-    const model = response.data;
-    const files = model.siblings || [];
-    let targetFile = files.find((f) => f.rfilename === filename);
-    if (!targetFile && files.length > 0) {
-        // Default to first .safetensors or .ckpt file
-        targetFile = files.find((f) => f.rfilename.endsWith('.safetensors') || f.rfilename.endsWith('.ckpt')) || files[0];
+    console.error(chalk.blue(`🔗 Fetching model info from: ${apiUrl}`));
+    
+    let model;
+    
+    // Try fetch first
+    try {
+        const fetchConfig = createFetchConfig();
+        const response = await fetch(apiUrl, {
+            ...fetchConfig,
+            headers: {
+                ...fetchConfig.headers,
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        model = await response.json();
+    } catch (fetchError) {
+        console.error(chalk.yellow(`⚠️ Fetch failed, trying axios: ${fetchError.message}`));
+        
+        // Fallback to axios
+        const axiosConfig = createAxiosConfig();
+        const response = await axios({
+            ...axiosConfig,
+            method: 'GET',
+            url: apiUrl,
+            timeout: 30000, // 30 seconds timeout for API calls
+            headers: {
+                ...axiosConfig.headers,
+                'Accept': 'application/json'
+            }
+        });
+        model = response.data;
     }
+    const files = model.siblings || [];
+            let targetFile = files.find((f) => f.rfilename === filename);
+        if (!targetFile && files.length > 0) {
+            // High priority: main model files
+            const mainModelPatterns = [
+                /^v\d+-\d+-pruned.*\.(safetensors|ckpt)$/,  // v1-5-pruned-emaonly.safetensors
+                /^.*-v\d+.*\.(safetensors|ckpt)$/,          // model-v1.5.safetensors
+                /^model\.(safetensors|ckpt)$/,              // model.safetensors
+                /^.*\d+px.*\.(safetensors|ckpt)$/           // playground-v2.5-1024px-aesthetic.fp16.safetensors
+            ];
+            
+            // Find main model files
+            const mainModelFiles = files.filter(f => {
+                const name = f.rfilename;
+                const isMainPattern = mainModelPatterns.some(pattern => pattern.test(name));
+                const isNotComponent = !name.includes('/') && // Root level files only
+                                      !name.includes('safety_checker') &&
+                                      !name.includes('text_encoder') &&
+                                      !name.includes('feature_extractor');
+                return isMainPattern && isNotComponent;
+            });
+            
+            // If no main model files found, look for any .safetensors/.ckpt files not in subdirectories
+            const fallbackFiles = files.filter(f => {
+                const name = f.rfilename;
+                const isModelFile = name.endsWith('.safetensors') || name.endsWith('.ckpt');
+                const isRootLevel = !name.includes('/');
+                return isModelFile && isRootLevel;
+            });
+            
+            // Choose preferring .safetensors over .ckpt, and 'pruned' files
+            const candidateFiles = mainModelFiles.length > 0 ? mainModelFiles : fallbackFiles;
+            targetFile = candidateFiles.find(f => f.rfilename.includes('pruned') && f.rfilename.endsWith('.safetensors')) ||
+                        candidateFiles.find(f => f.rfilename.endsWith('.safetensors')) ||
+                        candidateFiles.find(f => f.rfilename.includes('pruned') && f.rfilename.endsWith('.ckpt')) ||
+                        candidateFiles.find(f => f.rfilename.endsWith('.ckpt')) ||
+                        candidateFiles[0] ||
+                        files[0];
+        }
     if (!targetFile) {
         throw new Error(`No suitable file found for model ${modelId}`);
     }
